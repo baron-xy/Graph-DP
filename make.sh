@@ -1,4 +1,3 @@
-#进入对应的python环境
 # source GraphDP/bin/activate
 #生成随机数据，路径输入为data文件夹所在目录
 python3 ./python/create_graph.py 10000 /home/user202234261072/src/GraphDP/Graph-DP
