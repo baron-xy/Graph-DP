@@ -3,7 +3,7 @@
 ###**********
 # 随机生成n个节点的图
 import string
-from tkinter import N
+#from tkinter import N
 from traceback import print_tb
 import numpy as np
 import networkx as nx   #导入networkx包

@@ -116,7 +116,7 @@ void Data::RR_perturb()
             }
         }
         if (i % 1000 == 0)
-            cout << "随机扰动已完成" << (float(i) * 100) / maxnode << "%" << endl;
+            cout  << (float(i) * 100) / maxnode << "%" << endl;
         noisy_Edges[i] = noisy_line;
     }
 }
@@ -132,7 +132,7 @@ void Data::counting(string logData)
         n = 0;
         if (i % 1000 == 0)
         {
-            cout << "计数已完成" << (float(i) * 100) / maxnode << "%" << endl;
+            cout  << (float(i) * 100) / maxnode << "%" << endl;
         };
 
         for (int j = 0; j < Edges[i].size(); j++)
@@ -148,7 +148,7 @@ void Data::counting(string logData)
         }
         sum = sum + count - n / (1 + exp(eps));
     }
-    cout << "本次统计出三角形的总数量为：" << round(sum * (1 + exp(eps)) / (exp(eps) - 1)) << endl;
+    cout << "The total number of trangles calculated is:" << round(sum * (1 + exp(eps)) / (exp(eps) - 1)) << endl;
     // 输出到log文本中
     ofstream fout(logData, ios::app);
     fout << "本次统计出三角形的总数量为：" << round(sum * (1 + exp(eps)) / (exp(eps) - 1)) << endl;
@@ -170,16 +170,16 @@ int main(int argc, char *argv[])
     data.maxnode = atoi(argv[1]);
     //*******读取数据
     data.readFile(EdgePath);
-    cout << "本次读取" << data.maxnode << "项数据，开始进行随机扰动" << endl;
+    cout  << data.maxnode << " items were loaded,start random response..." << endl;
 
     // //*******随机扰动
     data.RR_perturb();
-    cout << "数据随机扰动完成，开始写入数据......" << endl;
+    cout << "Random response is compelete,start writing data..." << endl;
 
     // // //*******扰动数据写入csv(一般不需要)
     // // data.wirte_noisy();
 
     // //****开始进行三角形计数
-    cout << "开始进行三角形计数" << endl;
+    cout << "Start counting..." << endl;
     data.counting(logData);
 }

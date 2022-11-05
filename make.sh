@@ -1,12 +1,14 @@
-#ç”Ÿæˆéšæœºæ•°æ®ï¼Œè·¯å¾„è¾“å…¥ä¸ºdataæ–‡ä»¶å¤¹æ‰€åœ¨ç›®å½•
-python .\python\create_graph.py 1000 D:\TriangleLD
-#ç¼–è¯‘counting_triangles.cpp
-g++ .\cpp\counting_triagles.cpp -o .\cpp\counting_triagles.exe
-#è¿è¡Œcounting_triangles.exe
-.\cpp\counting_triagles.exe 1000 D:\TriangleLD
+#½øÈë¶ÔÓ¦µÄpython»·¾³
+# source GraphDP/bin/activate
+#Éú³ÉËæ»úÊı¾İ£¬Â·¾¶ÊäÈëÎªdataÎÄ¼ş¼ĞËùÔÚÄ¿Â¼
+python3 ./python/create_graph.py 10000 /home/user202234261072/src/GraphDP/Graph-DP
+#±àÒëcounting_triangles.cpp
+g++ ./cpp/counting_triagles.cpp -o ./cpp/counting_triagles.exe
+#ÔËĞĞcounting_triangles.exe
+./cpp/counting_triagles.exe 10000 /home/user202234261072/src/GraphDP/Graph-DP
 
-#ç¼–è¯‘counting_star.cpp
-g++ .\cpp\counting_stars.cpp -o .\cpp\counting_stars.exe
-#è¿è¡Œcounting_star.exe
-.\cpp\counting_stars.exe 2 D:\TriangleLD\data\deg.csv
+#±àÒëcounting_star.cpp
+g++ ./cpp/counting_stars.cpp -o ./cpp/counting_stars.exe
+#ÔËĞĞcounting_star.exe
+./cpp/counting_stars.exe 3 /home/user202234261072/src/GraphDP/Graph-DP
 ##

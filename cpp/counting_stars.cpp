@@ -4,21 +4,21 @@
 #include <string>
 #include <vector>
 #include <ctime>
-// è¯¥åŒ…å†…åŒ…å«laplaceéšæœºæ•°ç”Ÿæˆç®—æ³•
+// ¸Ã°üÄÚ°üº¬laplaceËæ»úÊıÉú³ÉËã·¨
 #include "include/stats.hpp"
-// äº§ç”Ÿéšæœºæ•°ç§å­
+// ²úÉúËæ»úÊıÖÖ×Ó
 stats::rand_engine_t engine((unsigned)time(0));
 using namespace std;
-double eps1 = 1; // ç¬¬ä¸€é˜¶æ®µçš„éšç§é¢„ç®—
-double eps2 = 1; // ç¬¬äºŒé˜¶æ®µçš„éšç§é¢„ç®—
+double eps1 = 1; // µÚÒ»½×¶ÎµÄÒşË½Ô¤Ëã
+double eps2 = 1; // µÚ¶ş½×¶ÎµÄÒşË½Ô¤Ëã
 
-// ç»™å‡ºæ‹‰æ™®æ‹‰æ–¯éšæœºæ•°
+// ¸ø³öÀ­ÆÕÀ­Ë¹Ëæ»úÊı
 double Laplace_noisy(double GS, double eps)
 {
     return stats::rlaplace(0.0, GS / eps, engine);
 };
 
-// è®¡ç®—ç»„åˆæ•°C(n,m)
+// ¼ÆËã×éºÏÊıC(n,m)
 long long C(int n, int m)
 {
     if (m < n - m)
@@ -47,21 +47,21 @@ public:
 
 void Data::readFile(string Path)
 {
-    // å®šä¹‰å£°æ˜ä¸€ä¸ªifstreamå¯¹è±¡ï¼ŒæŒ‡å®šæ–‡ä»¶è·¯å¾„
+    // ¶¨ÒåÉùÃ÷Ò»¸öifstream¶ÔÏó£¬Ö¸¶¨ÎÄ¼şÂ·¾¶
     ifstream fp(Path);
     string line;
     while (getline(fp, line))
-    { // å¾ªç¯è¯»å–æ¯è¡Œæ•°æ®
+    { // Ñ­»·¶ÁÈ¡Ã¿ĞĞÊı¾İ
         vector<int> data_line;
         string number;
-        istringstream readstr(line); // stringæ•°æ®æµåŒ–
-        // å°†ä¸€è¡Œæ•°æ®æŒ‰'ï¼Œ'åˆ†å‰²
+        istringstream readstr(line); // stringÊı¾İÁ÷»¯
+        // ½«Ò»ĞĞÊı¾İ°´'£¬'·Ö¸î
         for (int j = 0; j < 2; j++)
-        {                                              // å¯æ ¹æ®æ•°æ®çš„å®é™…æƒ…å†µå–å¾ªç¯è·å–
-            getline(readstr, number, ',');             // å¾ªç¯è¯»å–æ•°æ®
-            data_line.push_back(atoi(number.c_str())); // å­—ç¬¦ä¸²ä¼ int
+        {                                              // ¿É¸ù¾İÊı¾İµÄÊµ¼ÊÇé¿öÈ¡Ñ­»·»ñÈ¡
+            getline(readstr, number, ',');             // Ñ­»·¶ÁÈ¡Êı¾İ
+            data_line.push_back(atoi(number.c_str())); // ×Ö·û´®´«int
         }
-        Deg.push_back(data_line); // æ’å…¥åˆ°vectorä¸­
+        Deg.push_back(data_line); // ²åÈëµ½vectorÖĞ
     }
 }
 
@@ -118,26 +118,27 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    // ç»™è¾“å…¥çš„å‚æ•°èµ‹å€¼
+    // ¸øÊäÈëµÄ²ÎÊı¸³Öµ
     int k = atoi(argv[1]);
     string DegPath = argv[2];
+    DegPath += "/data/deg.csv";
 
     Data data;
     data.readFile(DegPath);
     cout << "the length of dataset:\t" << data.Deg.size() << endl;
 
-    //******dmaxçš„è®¡ç®—ä¸å±•ç¤º
+    //******dmaxµÄ¼ÆËãÓëÕ¹Ê¾
     data.getDmax("getdmax");
     cout << "the max degree is:\t" << data.dmax << endl;
 
-    //*****è®¡ç®—å…¨å±€æ•æ„Ÿåº¦
+    //*****¼ÆËãÈ«¾ÖÃô¸Ğ¶È
     data.getGS(k);
     cout << "the golbel sensivity is: \t" << data.GS << endl;
 
-    //*****ç”¨æˆ·åˆ©ç”¨æ‹‰æ™®æ‹‰æ–¯æ‰°åŠ¨æ•°æ®å¹¶ä¸Šä¼ ,æœåŠ¡å™¨è®¡ç®—
+    //*****ÓÃ»§ÀûÓÃÀ­ÆÕÀ­Ë¹ÈÅ¶¯Êı¾İ²¢ÉÏ´«,·şÎñÆ÷¼ÆËã
     data.counting(k);
     // cout<<"the number of "<<k<<"-star :\t"<<data.sum<<endl;
 
-    //*****éªŒè¯å®éªŒç»“æœ
+    //*****ÑéÖ¤ÊµÑé½á¹û
     data.eval_exp(k);
 }
